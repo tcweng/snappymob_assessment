@@ -51,19 +51,27 @@ function generateObject() {
 }
 
 function taskB() {
-  // const array = generateObject();
-
+  let result = [];
   for (let i = 0; i < array.length; i++) {
     if (typeof array[i] == "string") {
-      console.log(array[i].replaceAll(" ", "") + " : " + typeof array[i]); // remove space if its a typeof string
+      result.push(array[i].replaceAll(" ", "") + " : " + typeof array[i]);
+      // console.log(array[i].replaceAll(" ", "") + " : " + typeof array[i]); // remove space if its a typeof string
     } else {
-      console.log(array[i] + " : " + typeof array[i]); // else just return.
+      result.push(array[i] + " : " + typeof array[i]);
+      // console.log(array[i] + " : " + typeof array[i]); // else just return.
     }
   }
+
+  return result.join("\n"); // return as string so it can generate output.txt with fs.
 }
 
-const outputFile = "output.txt";
+// Generate object and push to global array.
+generateObject();
+
+const outputFile = "output/output.txt";
+fs.mkdirSync("output", { recursive: true });
+
+// Task B-fied the generated object
 const outputData = taskB();
 
 fs.writeFileSync(outputFile, outputData, "utf8");
-console.log(`Output has been saved to ${outputFile}`);

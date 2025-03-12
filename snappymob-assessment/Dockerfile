@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /
 
 # Copy your JavaScript file into the container
 COPY assessment.js .
